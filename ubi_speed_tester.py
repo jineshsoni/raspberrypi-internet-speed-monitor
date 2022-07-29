@@ -23,9 +23,10 @@ try:
  ping = round(st.results.ping, 2)
 
  payload = {'Download': download, 'Upload': upload, 'Ping': ping, 'Temp': temp}
+ message = 'Download: ' + download + '\n' + 'Uplaod: ' + uplaod + 'n' + 'Ping: ' + ping + '\n' + 'CPU: ' + temp
  
  r = requests.post('http://industrial.api.ubidots.com/api/v1.6/devices/raspberry-pi/?token='+ubiToken, data=payload)
- r = requests.get('https://api.telegram.org/bot'+telegramBot+'/sendMessage?chat_id='+chatId+'&text='+str(payload))
+ r = requests.get('https://api.telegram.org/bot'+telegramBot+'/sendMessage?chat_id='+chatId+'&text='+str(message))
  
  # Print the server's response Uncomment the next line for debugging purposes
  #print(r.content)
