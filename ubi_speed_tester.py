@@ -18,8 +18,11 @@ temp = check_CPU_temp()
 try:
  st = speedtest.Speedtest()
  st.get_best_server()
+ upload = round(st.upload() / 1000000, 2)
+ download = round(st.download() / 1000000, 2)
+ ping = round(st.results.ping, 2)
 
- payload = {'Download': round(st.download() / 1000000, 2) , 'Upload': round(st.upload() / 1000000, 2), 'Ping': round(st.results.ping, 2), 'Temp': temp}
+ payload = {'Download': downlaod, 'Upload': upload, 'Ping': ping, 'Temp': temp}
  
  r = requests.post('http://industrial.api.ubidots.com/api/v1.6/devices/raspberry-pi/?token='+ubiToken, data=payload)
  r = requests.get('https://api.telegram.org/bot'+telegramBot+'/sendMessage?chat_id='+chatId+'&text='+str(payload))
