@@ -16,7 +16,7 @@ def check_CPU_temp():
 temp = check_CPU_temp()
 
 try:
- st = speedtest.Speedtest()
+ st = speedtest.Speedtest(secure=True)
  st.get_best_server()
  
  upload = round(st.upload() / 1000000, 2)
@@ -29,7 +29,7 @@ try:
  r = requests.post('http://industrial.api.ubidots.com/api/v1.6/devices/raspberry-pi/?token='+ubiToken, data=payload)
  r = requests.get('https://api.telegram.org/bot'+telegramBot+'/sendMessage?chat_id='+chatId+'&text='+str(message))
  
- # Print the server's response Uncomment the next line for debugging purposes
+ #Print the server's response Uncomment the next line for debugging purposes
  #print(r.content)
 except Exception as identifier:
 
