@@ -13,7 +13,12 @@ def check_CPU_temp():
     temp = float(m.group())
     return temp
 
+def toggle_fan():
+    power = os.popen("uhubctl -l 1-1 -p 2 -a toggle").readline()
+    return power
+
 temp = check_CPU_temp()
+fan = toggle_fan()
 
 try:
  st = speedtest.Speedtest(secure=True)
@@ -31,6 +36,7 @@ try:
  
  #Print the server's response Uncomment the next line for debugging purposes
  #print(r.content)
+ #print(fan)
 except Exception as identifier:
 
  print(identifier)
