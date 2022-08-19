@@ -14,7 +14,7 @@ def check_CPU_temp():
     return temp
 
 def toggle_fan():
-    power = os.popen("uhubctl -l 1-1 -p 2 -a toggle").readline()
+    power = os.popen("sudo uhubctl -l 1-1 -p 2 -a toggle").read()
     return power
 
 temp = check_CPU_temp()
