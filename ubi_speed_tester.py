@@ -18,7 +18,7 @@ def toggle_fan():
     return power
 
 temp = check_CPU_temp()
-fan = toggle_fan()
+#fan = toggle_fan()
 
 try:
  st = speedtest.Speedtest(secure=True)
